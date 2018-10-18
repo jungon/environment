@@ -41,19 +41,28 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      (clojure :variables
               clojure-enable-fancify-symbols t)
+     (colors :variables
+             colors-colorize-identifiers 'all
+             colors-enable-rainbow-identifiers t
+             colors-enable-nyan-cat-progress-bar t)
+     (react :variables
+            javascript-fmt-tool 'prettier)
+     html
      helm
      auto-completion
      better-defaults
      emacs-lisp
      git
-     ;; markdown
+     markdown
      neotree
      org
      (shell :variables
+            shell-default-shell 'eshell
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil)
+     syntax-checking
      version-control
      )
 
@@ -456,7 +465,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  )
+  (add-hook 'prog-mode-hook 'rainbow-mode)
+  (add-hook 'rjsx-mode-hook 'prettier-js-mode))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
