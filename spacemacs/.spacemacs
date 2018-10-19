@@ -206,7 +206,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator arrow :separator-scale 1.1)
+   dotspacemacs-mode-line-theme '(spacemacs :separator slant :separator-scale 1.1)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -466,7 +466,17 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-hook 'prog-mode-hook 'rainbow-mode)
-  (add-hook 'rjsx-mode-hook 'prettier-js-mode))
+  (add-hook 'rjsx-mode-hook 'prettier-js-mode)
+  ;; prettier settings
+  (setq prettier-js-args '("--semi" "false"
+                           "--single-quote" "true"
+                           "--use-tabs" "false"
+                           "--tab-width" "2"
+                           "--print-width" "120"))
+  (setq-default js2-strict-missing-semi-warning nil)
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
+  (setq-default indent-tabs-mode nil))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
